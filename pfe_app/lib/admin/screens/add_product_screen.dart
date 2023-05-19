@@ -8,6 +8,7 @@ import 'package:pfe_app/common/widgets/custom_textfield.dart';
 import 'package:pfe_app/constants/global_variables.dart';
 import 'package:pfe_app/constants/utils.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
@@ -28,6 +29,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
   List<File> images = [];
   final _addProductFormKey = GlobalKey<FormState>();
 
+  String qrCodeData = '';
+
   @override
   void dispose() {
     super.dispose();
@@ -46,26 +49,35 @@ class _AddProductScreenState extends State<AddProductScreen> {
   ];
 
   void sellProduct() {
-    print('???');
-
-    //  if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
-    print('!!!!');
     adminServices.sellProduct(
       context: context,
       name: productNameController.text,
       description: descriptionController.text,
       price: double.parse(priceController.text),
-      quantity: double.parse(quantityController.text),
+      quantity: int.parse(quantityController.text),
       category: category,
       images: images,
     );
-    //}
   }
 
   void selectImages() async {
     var res = await pickImages();
     setState(() {
       images = res;
+    });
+  }
+
+  void generateQRCodeData() {
+    String productInfo = '''
+      Name: ${productNameController.text}
+      Description: ${descriptionController.text}
+      Price: ${priceController.text}
+      Quantity: ${quantityController.text}
+      Category: $category
+    ''';
+
+    setState(() {
+      qrCodeData = productInfo;
     });
   }
 
@@ -192,6 +204,35 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   color: Colors.black12,
                   text: 'Sell',
                   onTap: sellProduct,
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    generateQRCodeData();
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              QrImageView(
+                                data: qrCodeData,
+                                size: 200,
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                'Scan the QR code to view product information',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Text('Generate QR Code'),
                 ),
               ],
             ),

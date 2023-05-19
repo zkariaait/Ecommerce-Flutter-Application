@@ -18,28 +18,28 @@ class AdminServices {
     required String name,
     required String description,
     required double price,
-    required double quantity,
+    required int quantity,
     required String category,
     required List<File> images,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
-      final cloudinary = CloudinaryPublic('denfgaxvg', 'uszbstnu');
+      final cloudinary = CloudinaryPublic('dm32ciz26', 'hhryfvyn');
       List<String> imageUrls = [];
 
       for (int i = 0; i < images.length; i++) {
         CloudinaryResponse res = await cloudinary.uploadFile(
           CloudinaryFile.fromFile(images[i].path, folder: name),
         );
-        imageUrls.add(res.secureUrl);
+        // imageUrls.add(res.secureUrl);
       }
 
       Product product = Product(
         name: name,
         description: description,
         quantity: quantity,
-        //images: imageUrls,
+        images: imageUrls,
         category: category,
         price: price,
         manufacturer: ' ',
@@ -49,7 +49,7 @@ class AdminServices {
         Uri.parse('$uri/products'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': 'seller_8b6b6ced',
+          'token': 'seller_b45451c5',
         },
         body: product.toJson(),
       );

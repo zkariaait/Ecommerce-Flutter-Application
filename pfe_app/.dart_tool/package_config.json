@@ -230,6 +230,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "qr",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/qr-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "qr_flutter",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/qr_flutter-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "shared_preferences",
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.1.1",
       "packageUri": "lib/",
@@ -344,7 +356,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-18T11:20:10.877517Z",
+  "generated": "2023-05-19T10:21:10.275238Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }
