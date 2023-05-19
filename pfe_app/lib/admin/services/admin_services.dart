@@ -32,7 +32,7 @@ class AdminServices {
         CloudinaryResponse res = await cloudinary.uploadFile(
           CloudinaryFile.fromFile(images[i].path, folder: name),
         );
-        // imageUrls.add(res.secureUrl);
+        imageUrls.add(res.secureUrl);
       }
 
       Product product = Product(
