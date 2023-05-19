@@ -49,7 +49,7 @@ class AdminServices {
         Uri.parse('$uri/products'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': 'seller_b45451c5',
+          'token': 'seller_0f077430',
         },
         body: product.toJson(),
       );
@@ -72,16 +72,19 @@ class AdminServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Product> productList = [];
     try {
-      http.Response res = await http.get(Uri.parse('$uri/products'), headers: {
+      http.Response res =
+          await http.get(Uri.parse('$uri/products/seller/1'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'x-auth-token': userProvider.user.token,
+        // 'x-auth-token': userProvider.user.token,
       });
+      print(res.body);
 
       httpErrorHandle(
         response: res,
         context: context,
         onSuccess: () {
           for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            print('0$jsonDecode(res.body)');
             productList.add(
               Product.fromJson(
                 jsonEncode(
@@ -89,12 +92,15 @@ class AdminServices {
                 ),
               ),
             );
+            //productList[i].sqty(productList[i].quantity.toDouble());
           }
         },
       );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
+    print('aaa$productList');
+
     return productList;
   }
 
@@ -106,16 +112,20 @@ class AdminServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
-      http.Response res = await http.post(
-        Uri.parse('$uri/admin/delete-product'),
+      var a = product.toJson();
+      print('object:$a');
+      http.Response res = await http.delete(
+        Uri.parse('$uri/product/'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': userProvider.user.token,
+          //  'x-auth-token': userProvider.user.token,
         },
         body: jsonEncode({
           'id': product.id,
         }),
       );
+      int aa = res.statusCode;
+      print('0object0 :$aa');
 
       httpErrorHandle(
         response: res,
@@ -128,7 +138,7 @@ class AdminServices {
       showSnackBar(context, e.toString());
     }
   }
-
+/*
   Future<List<Order>> fetchAllOrders(BuildContext context) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Order> orderList = [];
@@ -225,4 +235,5 @@ class AdminServices {
       'totalEarnings': totalEarning,
     };
   }*/
+  */
 }

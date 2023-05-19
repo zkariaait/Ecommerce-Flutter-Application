@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pfe_app/admin/screens/add_product_screen.dart';
 import 'package:pfe_app/features/auth/screens/login.dart';
 import 'package:pfe_app/features/welcome/welcome.dart';
 import 'package:pfe_app/common/widgets/bottom_bar.dart';
+import 'package:pfe_app/home/screens/home_screen.dart';
 
 import '../main.dart';
 
@@ -46,6 +48,23 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const BottomBar(),
       );
+
+    case HomeScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const HomeScreen(),
+      );
+    case BottomBar.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const BottomBar(),
+      );
+    case AddProductScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AddProductScreen(),
+      );
+
     default:
       return MaterialPageRoute(
         settings: routeSettings,

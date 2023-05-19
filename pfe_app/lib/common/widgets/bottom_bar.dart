@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pfe_app/admin/screens/add_product_screen.dart';
+import 'package:pfe_app/admin/screens/posts_screen.dart';
 import 'package:pfe_app/constants/global_variables.dart';
 import 'package:pfe_app/features/account/screens/account_screen.dart';
 import 'package:pfe_app/features/auth/services/auth_service.dart';
@@ -25,7 +26,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const AccountScreen(),
+    const PostsScreen(),
     const AddProductScreen(),
     //const CartScreen(),
   ];
