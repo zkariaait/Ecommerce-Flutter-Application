@@ -37,8 +37,6 @@ class _PostsScreenState extends State<PostsScreen> {
         setState(() {});
       },
     );
-
-    print(product.id);
   }
 
   void navigateToAddProduct() {
@@ -61,7 +59,7 @@ class _PostsScreenState extends State<PostsScreen> {
                     SizedBox(
                       height: 140,
                       child: SingleProduct(
-                        image: productData.images.first,
+                        image: productData.images[0],
                       ),
                     ),
                     Row(

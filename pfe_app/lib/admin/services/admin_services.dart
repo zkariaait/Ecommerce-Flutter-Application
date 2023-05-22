@@ -49,7 +49,7 @@ class AdminServices {
         Uri.parse('$uri/products'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': 'seller_0f077430',
+          'token': 'seller_a0ff723f',
         },
         body: product.toJson(),
       );
@@ -73,7 +73,7 @@ class AdminServices {
     List<Product> productList = [];
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/products/seller/1'), headers: {
+          await http.get(Uri.parse('$uri/products/seller/9'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         // 'x-auth-token': userProvider.user.token,
       });
@@ -112,10 +112,10 @@ class AdminServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
-      var a = product.toJson();
+      var a = product.id;
       print('object:$a');
       http.Response res = await http.delete(
-        Uri.parse('$uri/product/'),
+        Uri.parse('$uri/product/$a'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           //  'x-auth-token': userProvider.user.token,
@@ -137,8 +137,7 @@ class AdminServices {
     } catch (e) {
       showSnackBar(context, e.toString());
     }
-  }
-/*
+  } /*
   Future<List<Order>> fetchAllOrders(BuildContext context) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Order> orderList = [];
