@@ -67,7 +67,6 @@ class AdminServices {
     }
   }
 
-  // get all the products
   Future<List<Product>> fetchAllProducts(BuildContext context) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Product> productList = [];
@@ -84,13 +83,9 @@ class AdminServices {
         context: context,
         onSuccess: () {
           for (int i = 0; i < jsonDecode(res.body).length; i++) {
-            print('0$jsonDecode(res.body)');
+            print('0${jsonDecode(res.body)}');
             productList.add(
-              Product.fromJson(
-                jsonEncode(
-                  jsonDecode(res.body)[i],
-                ),
-              ),
+              Product.fromJson(jsonDecode(res.body)[i]),
             );
             //productList[i].sqty(productList[i].quantity.toDouble());
           }

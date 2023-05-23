@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pfe_app/common/widgets/loader.dart';
 import 'package:pfe_app/constants/global_variables.dart';
+import 'package:pfe_app/constants/utils.dart';
+import 'package:pfe_app/home/service/home_services.dart';
 import 'package:pfe_app/models/product.dart';
 
 class CategoryDealsScreen extends StatefulWidget {
@@ -16,22 +18,27 @@ class CategoryDealsScreen extends StatefulWidget {
 }
 
 class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
-  List<Product>? productList;
-  // final HomeServices homeServices = HomeServices();
+  List<Product> productList = [];
+  final HomeServices homeServices = HomeServices();
 
   @override
   void initState() {
     super.initState();
-    // fetchCategoryProducts();
+    fetchCategoryProducts();
   }
 
-  /*fetchCategoryProducts() async {
-    productList = await homeServices.fetchCategoryProducts(
-      context: context,
-      category: widget.category,
-    );
-    setState(() {});
-  }*/
+  fetchCategoryProducts() async {
+    try {
+      productList = await homeServices.fetchCategoryProducts(
+        context: context,
+        category: widget.category,
+      );
+
+      setState(() {});
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +59,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
           ),
         ),
       ),
-      body: productList == null
+      body: productList.isEmpty
           ? const Loader()
           : Column(
               children: [
@@ -72,7 +79,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                   child: GridView.builder(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.only(left: 15),
-                    itemCount: productList!.length,
+                    itemCount: productList.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
@@ -80,7 +87,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                       mainAxisSpacing: 10,
                     ),
                     itemBuilder: (context, index) {
-                      final product = productList![index];
+                      final product = productList[index];
                       return GestureDetector(
                         onTap: () {
                           /* Navigator.pushNamed(
