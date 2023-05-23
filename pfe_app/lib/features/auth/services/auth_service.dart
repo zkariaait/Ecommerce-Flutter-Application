@@ -98,6 +98,9 @@ class AuthService {
             Navigator.pushNamed(context, '/actual-home');
           },
         );
+      }
+      if (customerRes.statusCode == 202) {
+        Navigator.pushNamed(context, '/actual-home');
       } else {
         print('?sELER API?$code');
 
