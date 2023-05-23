@@ -16,31 +16,39 @@ class HomeServices {
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Product> productList = [];
+    category = category.toUpperCase();
     try {
-      category = category.toUpperCase();
-      http.Response res = await http.get(
-        Uri.parse('$uri/products/$category'),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          //'x-auth-token': userProvider.user.token,
-        },
-      );
+      http.Response res =
+          await http.get(Uri.parse('$uri/products/$category'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': userProvider.user.token,
+      });
 
       httpErrorHandle(
         response: res,
         context: context,
         onSuccess: () {
-          List<dynamic> jsonList = jsonDecode(res.body);
-          productList = jsonList.map((json) => Product.fromMap(json)).toList();
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            var a = jsonDecode(res.body)[i];
+            print('PRO: $a');
+            productList.add(
+              Product.fromJson(
+                jsonEncode(
+                  jsonDecode(res.body)[i],
+                ),
+              ),
+            );
+          }
         },
       );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
+    print(productList);
     return productList;
   }
 
-  /* Future<Product> fetchDealOfDay({
+  Future<Product> fetchDealOfDay({
     required BuildContext context,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
@@ -72,5 +80,5 @@ class HomeServices {
       showSnackBar(context, e.toString());
     }
     return product;
-  }*/
+  }
 }

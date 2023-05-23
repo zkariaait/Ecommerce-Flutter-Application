@@ -38,18 +38,18 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (_) => const MyApp(),
       );
 
-    case CategoryDealsScreen.routeName:
-      var category = routeSettings.arguments as String;
-      return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (_) => CategoryDealsScreen(
-          category: category,
-        ),
-      );
     case Welcome.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const Welcome(),
+      );
+
+    case CategoryDealsScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const CategoryDealsScreen(
+          category: 'mobiles',
+        ),
       );
 
     case BottomBar.routeName:

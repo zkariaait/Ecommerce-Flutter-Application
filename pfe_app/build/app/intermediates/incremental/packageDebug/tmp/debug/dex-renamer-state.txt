@@ -1,4 +1,4 @@
-#Sun May 21 22:02:53 WEST 2023
-base.0=C\:\\Users\\HP\\AndroidStudioProjects\\Ecommerce-Flutter-Application\\pfe_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Tue May 23 19:27:19 WEST 2023
+base.0=C\:\\Users\\HP\\AndroidStudioProjects\\pfe_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
