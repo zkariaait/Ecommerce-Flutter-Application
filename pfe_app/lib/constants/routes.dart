@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pfe_app/admin/screens/add_product_screen.dart';
 import 'package:pfe_app/features/auth/screens/login.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:pfe_app/features/product_details/screens/product_details_screen.dart';
+import 'package:pfe_app/features/search/screens/search_screen.dart';
+>>>>>>> Stashed changes
 import 'package:pfe_app/features/welcome/welcome.dart';
 import 'package:pfe_app/common/widgets/bottom_bar.dart';
 import 'package:pfe_app/home/screens/category_deals_screen.dart';
@@ -37,7 +42,26 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const MyApp(),
       );
+<<<<<<< Updated upstream
 
+=======
+    case SearchScreen.routeName:
+      var searchQuery = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => SearchScreen(
+          searchQuery: searchQuery,
+        ),
+      );
+    case ProductDetailScreen.routeName:
+      var product = routeSettings.arguments as Product;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => ProductDetailScreen(
+          product: product,
+        ),
+      );
+>>>>>>> Stashed changes
     case Welcome.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
