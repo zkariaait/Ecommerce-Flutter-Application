@@ -49,7 +49,7 @@ class AdminServices {
         Uri.parse('$uri/products'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': 'seller_a0ff723f',
+          'token': 'seller_8d4f97be',
         },
         body: product.toJson(),
       );

@@ -25,7 +25,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController quantityController = TextEditingController();
   final AdminServices adminServices = AdminServices();
 
-  String category = 'Mobiles';
+  String category = 'MOBILES'; // Updated enum constant
   List<File> images = [];
   final _addProductFormKey = GlobalKey<FormState>();
 
@@ -41,11 +41,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
   }
 
   List<String> productCategories = [
-    'Mobiles',
-    'Essentials',
-    'Appliances',
-    'Books',
-    'Fashion'
+    'MOBILES',
+    'FURNITURE',
+    'ELECTRONICS',
+    'BOOKS',
+    'CLOTHING'
   ];
 
   void sellProduct() {
