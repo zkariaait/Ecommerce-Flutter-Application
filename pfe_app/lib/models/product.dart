@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:pfe_app/models/rating.dart';
+
 class Product {
   final String name;
   final String description;
@@ -9,7 +11,7 @@ class Product {
   final double price;
   final String? id;
   final String manufacturer;
-  //final List<Rating>? rating;
+  final List<Rating>? rating;
 
   Product({
     required this.name,
@@ -20,7 +22,7 @@ class Product {
     required this.price,
     this.id,
     required this.manufacturer,
-    //  this.rating,
+    this.rating,
   });
 
   Map<String, dynamic> toMap() {
@@ -32,7 +34,7 @@ class Product {
       'category': category,
       'price': price,
       'manufacturer': manufacturer,
-      //'rating': rating,
+      'rating': rating,
     };
   }
 
@@ -46,6 +48,13 @@ class Product {
       category: map['category'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       manufacturer: map['manufacturer'],
+      rating: map['ratings'] != null
+          ? List<Rating>.from(
+              map['ratings']?.map(
+                (x) => Rating.fromMap(x),
+              ),
+            )
+          : null,
     );
   }
 

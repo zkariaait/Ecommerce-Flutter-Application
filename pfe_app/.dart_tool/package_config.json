@@ -110,6 +110,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_rating_bar",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_rating_bar-4.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/flutter/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -356,7 +362,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-23T18:07:31.700283Z",
+  "generated": "2023-05-24T01:55:22.788554Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }
