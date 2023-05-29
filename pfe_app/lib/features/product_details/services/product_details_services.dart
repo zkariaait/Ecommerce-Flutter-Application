@@ -9,6 +9,7 @@ import 'package:pfe_app/models/user.dart';
 import 'package:pfe_app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductDetailsServices {
   void addToCart({
@@ -18,14 +19,20 @@ class ProductDetailsServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
+      print(userProvider.user.token);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('x-auth-token')!;
+      print('id: ${product.id}, productName: ${product.name}, quantity: 1');
       http.Response res = await http.post(
-        Uri.parse('$uri/api/add-to-cart'),
+        Uri.parse('$uri/cart/add'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': userProvider.user.token,
+          'token': token,
         },
         body: jsonEncode({
-          'id': product.id!,
+          'productId': product.id,
+          'productName': product.name,
+          'quantity': 1
         }),
       );
 
