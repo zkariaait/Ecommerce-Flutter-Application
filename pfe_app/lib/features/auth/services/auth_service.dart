@@ -87,7 +87,7 @@ class AuthService {
         Provider.of<UserProvider>(context, listen: false)
             .setUser(customerRes.body);
         await prefs.setString('x-auth-token', customerToken);
-
+        await prefs.setString('user-type', 'customer');
         httpErrorHandle(
           response: customerRes,
           context: context,
@@ -128,6 +128,7 @@ class AuthService {
           Provider.of<UserProvider>(context, listen: false)
               .setUser(sellerRes.body);
           await prefs.setString('x-auth-token', sellerToken);
+          await prefs.setString('user-type', 'seller');
 
           httpErrorHandle(
             response: sellerRes,
