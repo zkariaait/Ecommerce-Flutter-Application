@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pfe_app/common/widgets/loader.dart';
 import 'package:pfe_app/constants/global_variables.dart';
+import 'package:pfe_app/features/product_details/screens/product_details_screen.dart';
 import 'package:pfe_app/home/service/home_services.dart';
 import 'package:pfe_app/models/product.dart';
 
@@ -84,11 +85,11 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                       final product = productList![index];
                       return GestureDetector(
                         onTap: () {
-                          /*Navigator.pushNamed(
+                          Navigator.pushNamed(
                             context,
                             ProductDetailScreen.routeName,
                             arguments: product,
-                          );*/
+                          );
                         },
                         child: Column(
                           children: [

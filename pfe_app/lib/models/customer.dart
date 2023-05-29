@@ -6,21 +6,22 @@ import 'package:pfe_app/models/Cart.dart';
 
 class Customer extends User {
   final List<Order> orders;
-  final Cart customerCart;
+  // final Cart customerCart;
+  final List<dynamic> cart;
 
-  Customer({
-    required super.name,
-    required super.lastName,
-    required super.mobileNo,
-    required super.emailId,
-    required super.password,
-    required super.address,
-    required super.type,
-    required super.token,
-    required this.orders,
-    required this.customerCart,
-    required super.id,
-  });
+  Customer(
+      {required super.name,
+      required super.lastName,
+      required super.mobileNo,
+      required super.emailId,
+      required super.password,
+      required super.address,
+      required super.type,
+      required super.token,
+      required this.orders,
+//    required this.customerCart,
+      required super.id,
+      required this.cart});
 
   Map<String, dynamic> toMap() {
     return {
@@ -30,7 +31,7 @@ class Customer extends User {
       'mobileNo': mobileNo,
       'emailId': emailId,
       'password': password,
-      'customerCart': customerCart,
+      //  'customerCart': customerCart,
       'orders': orders.map((x) => x.toMap()).toList(),
 
       /*    'address': address,
@@ -50,7 +51,7 @@ class Customer extends User {
         address: map['address'] ?? '',
         type: map['type'] ?? '',
         token: map['token'] ?? '',
-        customerCart: map['customerCart'] ?? '',
+        cart: map['customerCart'] ?? '',
         orders: List<Order>.from(
             map['orders']?.map((x) => Order.fromMap(x['order']))));
   }
