@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pfe_app/admin/screens/add_product_screen.dart';
 import 'package:pfe_app/features/auth/screens/login.dart';
+import 'package:pfe_app/features/auth/screens/signup.dart';
 import 'package:pfe_app/features/product_details/screens/product_details_screen.dart';
 import 'package:pfe_app/features/search/screens/search_screen.dart';
 import 'package:pfe_app/features/welcome/welcome.dart';
@@ -39,6 +40,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const MyApp(),
+      );
+    case SignUp.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const SignUp(),
       );
     case SearchScreen.routeName:
       var searchQuery = routeSettings.arguments as String;

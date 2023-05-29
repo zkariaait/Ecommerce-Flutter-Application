@@ -19,11 +19,12 @@ class Customer extends User {
     required super.token,
     required this.orders,
     required this.customerCart,
+    required super.id,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      //  'id': id,
+      'id': id,
       'firstName': name,
       'lastName': lastName,
       'mobileNo': mobileNo,
@@ -40,7 +41,7 @@ class Customer extends User {
 
   factory Customer.fromMap(Map<String, dynamic> map) {
     return Customer(
-        //id: map['customerId'] ?? '',
+        id: map['customerId'] ?? '',
         name: map['firstName'] ?? '',
         lastName: map['lastName'] ?? '',
         mobileNo: map['mobileNo'] ?? '',

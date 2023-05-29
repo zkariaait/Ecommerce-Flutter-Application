@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pfe_app/constants/routes.dart';
+import 'package:pfe_app/features/auth/screens/signup.dart';
 import 'package:pfe_app/features/auth/services/auth_service.dart';
 import 'package:pfe_app/features/welcome/welcome.dart';
 import 'package:pfe_app/providers/user_provider.dart';
@@ -170,6 +171,11 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     // Routes.instance
                     // .push(widget: const SignUp(), context: context);
+                    //Navigator.pushNamed(context, '/signup-screen');
+                    Navigator.pushNamed(
+                      context,
+                      SignUp.routeName,
+                    );
                   },
                   child: Text(
                     "Create an account",

@@ -75,9 +75,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
       Quantity: ${quantityController.text}
       Category: $category
     ''';
-
+    print(productInfo);
     setState(() {
-      qrCodeData = productInfo;
+      qrCodeData =
+          ' Name :${productNameController.text}\n Description: ${descriptionController.text}\b Price: ${priceController.text}\n Quantity: ${quantityController.text}\n Category: $category';
     });
   }
 

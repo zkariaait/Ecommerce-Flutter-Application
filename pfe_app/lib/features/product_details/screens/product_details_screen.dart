@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pfe_app/common/widgets/custom_button.dart';
+import 'package:pfe_app/common/widgets/stars.dart';
 import 'package:pfe_app/constants/global_variables.dart';
 import 'package:pfe_app/features/product_details/services/product_details_services.dart';
 import 'package:pfe_app/home/screens/category_deals_screen.dart';
 import 'package:pfe_app/models/product.dart';
+import 'package:pfe_app/providers/user_provider.dart';
 
 import 'package:provider/provider.dart';
 
@@ -30,7 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   void initState() {
     super.initState();
     double totalRating = 0;
-    /*for (int i = 0; i < widget.product.rating!.length; i++) {
+    for (int i = 0; i < widget.product.rating!.length; i++) {
       totalRating += widget.product.rating![i].rating;
       if (widget.product.rating![i].userId ==
           Provider.of<UserProvider>(context, listen: false).user.id) {
@@ -40,7 +43,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
     if (totalRating != 0) {
       avgRating = totalRating / widget.product.rating!.length;
-    }*/
+    }
   }
 
   void navigateToSearchScreen(String query) {
@@ -142,9 +145,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Text(
                     widget.product.id!,
                   ),
-                  /* Stars(
+                  Stars(
                     rating: avgRating,
-                  ),*/
+                  ),
                 ],
               ),
             ),
@@ -243,7 +246,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
               ),
             ),
-            /* RatingBar.builder(
+            RatingBar.builder(
               initialRating: myRating,
               minRating: 1,
               direction: Axis.horizontal,
@@ -261,7 +264,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   rating: rating,
                 );
               },
-            )*/
+            )
           ],
         ),
       ),

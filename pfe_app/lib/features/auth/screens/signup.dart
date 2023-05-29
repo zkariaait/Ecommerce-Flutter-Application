@@ -7,6 +7,7 @@ import '../../../widgets/top_titles/top_titles.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
+  static const String routeName = '/signup-screen';
 
   @override
   State<SignUp> createState() => _SignUpState();

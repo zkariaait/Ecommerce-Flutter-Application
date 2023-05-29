@@ -33,6 +33,7 @@ class AuthService {
         address: '',
         type: '',
         token: '',
+        id: '',
       );
 
       http.Response res = await http.post(
@@ -54,6 +55,7 @@ class AuthService {
         },
       );
     } catch (e) {
+      print(e.toString());
       showSnackBar(context, e.toString());
     }
   }
