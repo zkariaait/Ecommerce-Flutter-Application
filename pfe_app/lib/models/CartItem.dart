@@ -1,9 +1,8 @@
 import 'dart:convert';
-
 import 'package:pfe_app/models/product.dart';
 
 class CartItem {
-  final String id;
+  final int id;
   final Product cartProduct;
   final int cartItemQuantity;
 
@@ -15,17 +14,17 @@ class CartItem {
 
   Map<String, dynamic> toMap() {
     return {
-      //'id': id,
-      'cartProduct': cartProduct,
+      'cartItemId': id,
+      'cartProduct': cartProduct.toMap(),
       'cartItemQuantity': cartItemQuantity,
     };
   }
 
   factory CartItem.fromMap(Map<String, dynamic> map) {
     return CartItem(
-      id: map['cartItemId'] ?? '',
-      cartProduct: map['cartProduct'] ?? '',
-      cartItemQuantity: map['cartItemQuantity'] ?? '',
+      id: map['cartItemId'] ?? 0,
+      cartProduct: Product.fromMap(map['cartProduct']),
+      cartItemQuantity: map['cartItemQuantity'] ?? 0,
     );
   }
 

@@ -4,6 +4,7 @@ import 'package:pfe_app/admin/screens/posts_screen.dart';
 import 'package:pfe_app/constants/global_variables.dart';
 import 'package:pfe_app/features/account/screens/account_screen.dart';
 import 'package:pfe_app/features/auth/services/auth_service.dart';
+import 'package:pfe_app/features/cart/screens/cart_screen.dart';
 import 'package:pfe_app/features/welcome/welcome.dart';
 import 'package:pfe_app/home/screens/home_screen.dart';
 import 'package:pfe_app/providers/user_provider.dart';
@@ -27,7 +28,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pages = [
     const HomeScreen(),
     const PostsScreen(),
-    const AddProductScreen(),
+    const CartScreen(),
     //const CartScreen(),
   ];
 

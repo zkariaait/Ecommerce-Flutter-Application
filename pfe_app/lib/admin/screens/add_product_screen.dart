@@ -68,7 +68,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
   }
 
   void generateQRCodeData() {
-    String productInfo = '''
+    String productInfo =
+        '''
       Name: ${productNameController.text}
       Description: ${descriptionController.text}
       Price: ${priceController.text}

@@ -25,6 +25,7 @@ class AdminServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
+      print('0$images');
       final cloudinary = CloudinaryPublic('dm32ciz26', 'hhryfvyn');
       List<String> imageUrls = [];
 
@@ -49,7 +50,7 @@ class AdminServices {
         Uri.parse('$uri/products'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': 'seller_8d4f97be',
+          'token': 'seller_8abfd6ba',
         },
         body: product.toJson(),
       );

@@ -12,6 +12,7 @@ class Product {
   final String? id;
   final String manufacturer;
   final List<Rating>? rating;
+  final String? qrCode;
 
   Product({
     required this.name,
@@ -23,6 +24,7 @@ class Product {
     this.id,
     required this.manufacturer,
     this.rating,
+    this.qrCode,
   });
 
   Map<String, dynamic> toMap() {
@@ -34,7 +36,8 @@ class Product {
       'category': category,
       'price': price,
       'manufacturer': manufacturer,
-      'rating': rating,
+      'ratings': rating,
+      'qrCode': qrCode,
     };
   }
 
@@ -46,6 +49,7 @@ class Product {
       quantity: map['quantity'] ?? 0,
       images: List<String>.from(map['images']),
       category: map['category'] ?? '',
+      qrCode: map['qrCode'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       manufacturer: map['manufacturer'],
       rating: map['ratings'] != null

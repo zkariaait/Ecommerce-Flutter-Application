@@ -87,7 +87,7 @@
     },
     {
       "name": "file_picker",
-      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-5.3.0",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-5.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -105,9 +105,9 @@
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.14",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "flutter_rating_bar",
@@ -136,6 +136,12 @@
     {
       "name": "http_parser",
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "image_gallery_saver",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/image_gallery_saver-1.7.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -195,9 +201,9 @@
     },
     {
       "name": "path_provider_linux",
-      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.1.10",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.1.11",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_platform_interface",
@@ -362,7 +368,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-24T01:55:22.788554Z",
+  "generated": "2023-05-29T15:59:34.233581Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }

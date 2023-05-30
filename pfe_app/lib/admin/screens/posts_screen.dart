@@ -21,6 +21,7 @@ class _PostsScreenState extends State<PostsScreen> {
   void initState() {
     super.initState();
     fetchAllProducts();
+    print('WOOOOOOO$products');
   }
 
   fetchAllProducts() async {
