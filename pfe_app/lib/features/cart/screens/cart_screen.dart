@@ -85,6 +85,13 @@ class _CartScreenState extends State<CartScreen> {
                           onPressed: () {},
                           // () => deleteProduct(productData, index),
                           icon: const Icon(
+                            Icons.add,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          // () => deleteProduct(productData, index),
+                          icon: const Icon(
                             Icons.delete_outline,
                           ),
                         ),

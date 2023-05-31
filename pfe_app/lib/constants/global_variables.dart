@@ -22,7 +22,7 @@ class GlobalVariables {
   static const List<String> carouselImages = [
     'https://istore.com.gh/images/fpslide/wslider01_iPhone_14_iPhone_14_plus_Family.jpg',
     'https://www.tmt.my/data/editor/home/slider/surface%20LAPTOP%205_%20PRO%209_combine%20banner%20(1)_LAZADA%20BANNER.jpg?v=1675997597991',
-    'https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/AdvantagePrime/BAU/14thJan/D37196025_IN_WL_AdvantageJustforPrime_Jan_Mob_ingress-banner_1242x450.jpg',
+    'https://cdnb.artstation.com/p/assets/images/images/016/802/459/large/shuja-shuaib-banner.jpg?1553535424',
     'https://images-na.ssl-images-amazon.com/images/G/31/Symbol/2020/00NEW/1242_450Banners/PL31_copy._CB432483346_.jpg',
     'https://images-na.ssl-images-amazon.com/images/G/31/img21/shoes/September/SSW/pc-header._CB641971330_.jpg',
   ];
