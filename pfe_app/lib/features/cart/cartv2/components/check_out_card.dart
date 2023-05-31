@@ -1,13 +1,35 @@
 import 'package:flutter/material.dart';
-
 import 'package:pfe_app/components/default_button.dart';
 import 'package:pfe_app/constants.dart';
 import 'package:pfe_app/size_config.dart';
+import 'package:pfe_app/features/cart/services/cart_services.dart';
 
-class CheckoutCard extends StatelessWidget {
+class CheckoutCard extends StatefulWidget {
   const CheckoutCard({
     Key? key,
   }) : super(key: key);
+
+  @override
+  _CheckoutCardState createState() => _CheckoutCardState();
+}
+
+class _CheckoutCardState extends State<CheckoutCard> {
+  double total = 0; // Variable to store the total of the cart
+  final CartServices cartServices = CartServices();
+
+  @override
+  void initState() {
+    super.initState();
+    calculateTotal();
+  }
+
+  Future<void> calculateTotal() async {
+    final cartTotal = await cartServices.fetchCartTotal();
+    setState(() {
+      print(cartTotal);
+      total = cartTotal;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +91,7 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
+                        text: "\$$total", // Use the calculated total here
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],

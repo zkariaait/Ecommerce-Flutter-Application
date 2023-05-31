@@ -99,4 +99,23 @@ class CartServices {
       throw Exception('Failed to fetch cart product');
     }
   }
+
+  Future<double> fetchCartTotal() async {
+    final apiUrl = '$uri/cartTotal'; // Replace with your actual API endpoint
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('x-auth-token')!;
+      final response =
+          await http.get(Uri.parse(apiUrl), headers: {'token': token});
+      print(response.statusCode);
+      if (response.statusCode == 202) {
+        final total = double.parse(response.body);
+        return total;
+      } else {
+        throw Exception('Failed to fetch cart total');
+      }
+    } catch (error) {
+      throw Exception('Error: $error');
+    }
+  }
 }
