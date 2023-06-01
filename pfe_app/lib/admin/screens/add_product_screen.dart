@@ -12,10 +12,13 @@ import 'package:pfe_app/constants/global_variables.dart';
 import 'package:pfe_app/constants/utils.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:encrypt/encrypt.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:flutter/src/foundation/key.dart' as flutter_key;
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
-  const AddProductScreen({Key? key}) : super(key: key);
+  const AddProductScreen({flutter_key.Key? key}) : super(key: key);
 
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
@@ -76,15 +79,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
   }
 
   Future<File?> saveQrCodeImage(String qrCodeData) async {
+    final key = encrypt.Key.fromLength(32);
+    final iv = encrypt.IV.fromLength(16);
+    final encrypter = Encrypter(AES(key));
+
+    final encryptedqrCodeData = encrypter.encrypt(qrCodeData, iv: iv).base64;
+
     final qrPainter = QrPainter(
-      data: qrCodeData,
+      data: encryptedqrCodeData,
       version: QrVersions.auto,
       gapless: false,
       errorCorrectionLevel: QrErrorCorrectLevel.L,
     );
     final imageSize = 200.0;
     final imageBytes = await qrPainter.toImageData(imageSize);
-
+    print('00$qrCodeData');
     if (imageBytes != null) {
       final directory = await getApplicationDocumentsDirectory();
       final filePath = '${directory.path}/qr_code.png';
@@ -120,8 +129,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
       'images': images,
     });
     setState(() {
-      print(':@');
-      qrCodeData = data;
+      final key = encrypt.Key.fromLength(32);
+      final iv = encrypt.IV.fromLength(16);
+      final encrypter = Encrypter(AES(key));
+
+      final encryptedqrCodeData = encrypter.encrypt(qrCodeData, iv: iv).base64;
+
+      qrCodeData = encryptedqrCodeData;
       test = true;
     });
   }

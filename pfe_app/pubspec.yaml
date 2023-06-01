@@ -43,6 +43,7 @@ dependencies:
   image_gallery_saver: ^2.0.1
   path_provider: ^2.0.5
   barcode_scan2: ^4.2.4
+  encrypt: ^5.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
