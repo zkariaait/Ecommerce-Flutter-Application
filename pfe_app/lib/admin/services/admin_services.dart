@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:cloudinary_public/cloudinary_public.dart';
@@ -13,7 +14,7 @@ import 'package:pfe_app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class AdminServices {
-  void sellProduct({
+  Future<String> sellProduct({
     required BuildContext context,
     required String name,
     required String description,
@@ -25,7 +26,7 @@ class AdminServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
-      print('0$images');
+      //  print('0$images');
       final cloudinary = CloudinaryPublic('dm32ciz26', 'hhryfvyn');
       List<String> imageUrls = [];
 
@@ -50,10 +51,19 @@ class AdminServices {
         Uri.parse('$uri/products'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': 'seller_8abfd6ba',
+          'token': 'seller_bd899086',
         },
         body: product.toJson(),
       );
+      String productId = await res.body;
+
+      print('object$productId');
+
+      if (res.statusCode == 202) {
+        String productId = await res.body;
+        print('productId$productId');
+        return productId;
+      }
 
       httpErrorHandle(
         response: res,
@@ -63,8 +73,24 @@ class AdminServices {
           Navigator.pop(context);
         },
       );
+      return productId;
     } catch (e) {
       showSnackBar(context, e.toString());
+      return '0';
+    }
+  }
+
+  Future<Product> fetchProductById(int id) async {
+    final url = Uri.parse('$uri/product/$id');
+    final response = await http.get(url);
+    var res = await response.body;
+    print(res);
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      final product = Product.fromJson(jsonResponse);
+      return product;
+    } else {
+      throw Exception('Failed to fetch product');
     }
   }
 
@@ -74,7 +100,7 @@ class AdminServices {
     List<Product> productList = [];
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/products/seller/9'), headers: {
+          await http.get(Uri.parse('$uri/products/seller/161'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         // 'x-auth-token': userProvider.user.token,
       });
@@ -138,6 +164,61 @@ class AdminServices {
     } catch (e) {
       showSnackBar(context, e.toString());
     }
+  }
+
+  Future<void> updateProductInCatalog({
+    required String jsonString,
+    required File file,
+  }) async {
+    final String apiUrl = '$uri/products';
+    final cloudinary = CloudinaryPublic('dm32ciz26', 'hhryfvyn');
+    String qr = '';
+    final jsonData = jsonDecode(jsonString);
+    final String productName = jsonData['productName'];
+
+    CloudinaryResponse res = await cloudinary.uploadFile(
+      CloudinaryFile.fromFile(file.path, folder: productName),
+    );
+    qr = res.secureUrl;
+
+    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    jsonMap['qrCode'] = qr;
+    String updatedJsonString = json.encode(jsonMap);
+/*
+    final Int productId = jsonData['productId'];
+    final double price = jsonData['price'];
+    final List<String> images = jsonData['images'];
+    final String status = jsonData['status'];
+    final String category = jsonData['category'];
+    final String description = jsonData['description'];
+    final String manufacturer = jsonData['manufacturer'];
+    final int quantity = jsonData['quantity'];
+
+ 
+
+    Product product = Product(
+      id: productId,
+      name: productName,
+      description: description,
+      quantity: quantity,
+      images: images,
+      category: category,
+      price: price,
+      manufacturer: ' ',
+      qrCode: qr,
+    );*/
+
+    http.Response resp = await http.put(
+      Uri.parse('$uri/products'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        // 'token': 'seller_5a109779',
+      },
+      body: updatedJsonString,
+    );
+    // String productId = await res.body;
+
+    //print('object$productId');
   } /*
   Future<List<Order>> fetchAllOrders(BuildContext context) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);

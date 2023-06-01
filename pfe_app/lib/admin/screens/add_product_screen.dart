@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pfe_app/admin/services/admin_services.dart';
 import 'package:pfe_app/common/widgets/custom_button.dart';
 import 'package:pfe_app/common/widgets/custom_textfield.dart';
@@ -27,9 +30,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   String category = 'MOBILES'; // Updated enum constant
   List<File> images = [];
+
   final _addProductFormKey = GlobalKey<FormState>();
 
   String qrCodeData = '';
+  bool test = false;
 
   @override
   void dispose() {
@@ -47,9 +52,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'BOOKS',
     'CLOTHING'
   ];
-
-  void sellProduct() {
-    adminServices.sellProduct(
+  Future<void> sellProduct() async {
+    String a = await adminServices.sellProduct(
       context: context,
       name: productNameController.text,
       description: descriptionController.text,
@@ -58,6 +62,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
       category: category,
       images: images,
     );
+    print('a: $a');
+    File QR = (await saveQrCodeImage(a))!;
+    adminServices.updateProductInCatalog(file: QR, jsonString: a);
+    generateQRCodeFromJson(a);
   }
 
   void selectImages() async {
@@ -67,19 +75,54 @@ class _AddProductScreenState extends State<AddProductScreen> {
     });
   }
 
-  void generateQRCodeData() {
-    String productInfo =
-        '''
-      Name: ${productNameController.text}
-      Description: ${descriptionController.text}
-      Price: ${priceController.text}
-      Quantity: ${quantityController.text}
-      Category: $category
-    ''';
-    print(productInfo);
+  Future<File?> saveQrCodeImage(String qrCodeData) async {
+    final qrPainter = QrPainter(
+      data: qrCodeData,
+      version: QrVersions.auto,
+      gapless: false,
+      errorCorrectionLevel: QrErrorCorrectLevel.L,
+    );
+    final imageSize = 200.0;
+    final imageBytes = await qrPainter.toImageData(imageSize);
+
+    if (imageBytes != null) {
+      final directory = await getApplicationDocumentsDirectory();
+      final filePath = '${directory.path}/qr_code.png';
+      final file = File(filePath);
+      await file.writeAsBytes(imageBytes.buffer.asUint8List());
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('QR code image saved successfully'),
+        ),
+      );
+      return file;
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to save QR code image'),
+        ),
+      );
+      return null;
+    }
+  }
+
+  void generateQRCodeFromJson(String jsonString) {
+    final jsonData = json.decode(jsonString);
+    final int productId = jsonData['productId'];
+    final String productName = jsonData['productName'];
+    final double price = jsonData['price'];
+    final List<dynamic> images = jsonData['images'];
+
+    final String data = json.encode({
+      'productId': productId,
+      'productName': productName,
+      'price': price,
+      'images': images,
+    });
     setState(() {
-      qrCodeData =
-          ' Name :${productNameController.text}\n Description: ${descriptionController.text}\b Price: ${priceController.text}\n Quantity: ${quantityController.text}\n Category: $category';
+      print(':@');
+      qrCodeData = data;
+      test = true;
     });
   }
 
@@ -205,12 +248,43 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 CustomButton(
                   color: Colors.black12,
                   text: 'Sell',
-                  onTap: sellProduct,
+                  onTap: () {
+                    sellProduct();
+                    Future.delayed(Duration(seconds: 5), () {
+                      if (test == true) {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  QrImageView(
+                                    data: qrCodeData,
+                                    version: QrVersions.auto,
+                                    size: 200.0,
+                                  ),
+                                  const SizedBox(height: 20),
+                                  Text(
+                                    'Scan the QR code to view product information',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                        test = false;
+                      }
+                    });
+                    //i want to wait a 2 sec before showing the modal
+                  },
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    generateQRCodeData();
+                    //  generateQRCodeData();
                     showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) {
