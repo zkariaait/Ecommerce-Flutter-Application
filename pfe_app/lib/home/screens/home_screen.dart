@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pfe_app/constants/global_variables.dart';
+import 'package:pfe_app/features/scanner/screens/qr_scanner_screen%20.dart';
 import 'package:pfe_app/features/search/screens/search_screen.dart';
 import 'package:pfe_app/home/widgets/address_box.dart';
 import 'package:pfe_app/home/widgets/carousel_image.dart';
@@ -86,10 +87,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.transparent,
                 height: 42,
                 margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: const Icon(Icons.mic,
+                child: InkWell(
+                  onTap: () {
+                    // Navigate to scanner screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => QRScanner()),
+                    );
+                  },
+                  child: Icon(
+                    Icons.qr_code_scanner_sharp,
                     color: Colors.black,
-                    size:
-                        25), /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    size: 25,
+                  ),
+                ),
               ),
             ],
           ),
