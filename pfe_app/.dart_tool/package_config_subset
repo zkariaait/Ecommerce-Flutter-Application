@@ -1,3 +1,7 @@
+pfe_app
+2.19
+file:///C:/Users/HP/AndroidStudioProjects/Ecommerce-Flutter-Application/pfe_app/
+file:///C:/Users/HP/AndroidStudioProjects/Ecommerce-Flutter-Application/pfe_app/lib/
 async
 2.18
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.10.0/
@@ -6,6 +10,10 @@ badges
 2.17
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/badges-3.1.1/
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/badges-3.1.1/lib/
+barcode_scan2
+2.12
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/barcode_scan2-4.2.4/
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/barcode_scan2-4.2.4/lib/
 boolean_selector
 2.17
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1/
@@ -58,6 +66,10 @@ file_picker
 2.17
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-5.3.1/
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-5.3.1/lib/
+fixnum
+2.19
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/fixnum-1.1.0/
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/fixnum-1.1.0/lib/
 flutter_lints
 2.17
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.1/
@@ -80,8 +92,8 @@ file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2/
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2/lib/
 image_gallery_saver
 2.12
-file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/image_gallery_saver-1.7.1/
-file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/image_gallery_saver-1.7.1/lib/
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/image_gallery_saver-2.0.1/
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/image_gallery_saver-2.0.1/lib/
 js
 2.16
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.5/
@@ -154,6 +166,10 @@ process
 2.14
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/process-4.2.4/
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/process-4.2.4/lib/
+protobuf
+2.12
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/protobuf-2.1.0/
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/protobuf-2.1.0/lib/
 provider
 2.12
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.0.5/
@@ -250,8 +266,4 @@ flutter_web_plugins
 2.17
 file:///C:/flutter/flutter/packages/flutter_web_plugins/
 file:///C:/flutter/flutter/packages/flutter_web_plugins/lib/
-pfe_app
-2.19
-file:///D:/Ecommerce-Flutter-Application-main/pfe_app/
-file:///D:/Ecommerce-Flutter-Application-main/pfe_app/lib/
 2

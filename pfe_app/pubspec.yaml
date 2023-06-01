@@ -40,9 +40,9 @@ dependencies:
   file_picker: ^5.3.0
   qr_flutter: ^4.1.0
   flutter_rating_bar: ^4.0.1
-  image_gallery_saver: ^1.7.1
+  image_gallery_saver: ^2.0.1
   path_provider: ^2.0.5
-
+  barcode_scan2: ^4.2.4
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,0 +1,28 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="me.hetian.flutter_qr_reader" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="16"
+6-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="16" />
+7-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.FLASHLIGHT" />
+9-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:3:5-69
+9-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:3:22-66
+10    <uses-permission android:name="android.permission.CAMERA" />
+10-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:4:5-65
+10-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:4:22-62
+11
+12    <uses-feature android:name="android.hardware.camera" />
+12-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:5:5-60
+12-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:5:19-57
+13    <uses-feature android:name="android.hardware.camera.autofocus" />
+13-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:6:5-70
+13-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:6:19-67
+14    <uses-feature android:name="android.hardware.camera.flash" />
+14-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:7:5-66
+14-->C:\Users\HP\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_qr_reader-1.0.5\android\src\main\AndroidManifest.xml:7:19-63
+15
+16</manifest>

@@ -5,7 +5,7 @@
     android:versionName="1.0.0" >
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="18"
         android:targetSdkVersion="33" />
     <!--
          The INTERNET permission is required for development. Specifically,
@@ -22,6 +22,8 @@
             <data android:mimeType="*/*" />
         </intent>
     </queries>
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name="android.app.Application"
@@ -61,6 +63,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <activity android:name="de.mintware.barcode_scan.BarcodeScannerActivity" />
 
         <uses-library
             android:name="androidx.window.extensions"
