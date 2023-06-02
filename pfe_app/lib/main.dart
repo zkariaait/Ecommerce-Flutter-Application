@@ -4,7 +4,9 @@ import 'package:pfe_app/features/auth/services/auth_service.dart';
 import 'package:pfe_app/features/welcome/welcome.dart';
 import 'package:pfe_app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'common/widgets/admin_bottom_bar.dart';
 import 'common/widgets/bottom_bar.dart';
 import 'constants/global_variables.dart';
 import 'constants/routes.dart';
@@ -47,34 +49,38 @@ class MyApp extends StatelessWidget {
         useMaterial3: true, // can remove this line
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: FutureBuilder<bool>(
-        future: checkLoggedIn(),
+      home: FutureBuilder<String?>(
+        future: getType(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // Display a loading indicator while checking authentication status
+            // Display a loading indicator while fetching the user type
             return Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           } else {
-            if (snapshot.hasData && snapshot.data!) {
-              // User is logged in, navigate to the home screen (BottomBar)
-              return BottomBar();
-            } else {
-              // User is not logged in, navigate to the login screen
-              return Login();
+            if (snapshot.hasData) {
+              String? userType = snapshot.data;
+              if (userType == 'seller') {
+                return AdminScreen();
+              } else if (userType == 'customer') {
+                return BottomBar();
+              }
             }
+
+            // User is not logged in or userType is not 'seller' or 'customer',
+            // navigate to the login screen
+            return Login();
           }
         },
       ),
     );
   }
 
-  Future<bool> checkLoggedIn() async {
-    final AuthService authService = AuthService();
-
-    bool isLoggedIn = await authService.isLogged();
-    return isLoggedIn;
+  Future<String?> getType() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? action = prefs.getString('user-type');
+    return action;
   }
 }

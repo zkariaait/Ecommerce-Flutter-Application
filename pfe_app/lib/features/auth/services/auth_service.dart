@@ -135,13 +135,17 @@ class AuthService {
             context: context,
             onSuccess: () async {
               SharedPreferences prefs = await SharedPreferences.getInstance();
-              Provider.of<UserProvider>(context, listen: false)
-                  .setUser(sellerRes.body);
+              /*   Provider.of<UserProvider>(context, listen: false)
+                  .setUser(sellerRes.body);*/
               await prefs.setString('x-auth-token', sellerToken);
+              Navigator.pushNamed(context, '/admin-home');
 
               // Navigate to the seller screen
             },
           );
+        }
+        if (sellerRes.statusCode == 202) {
+          Navigator.pushNamed(context, '/admin-home');
         } else {
           // Handle other status codes or errors for both customer and seller login
         }
@@ -194,17 +198,20 @@ class AuthService {
   Future<bool> checkTokenLoggedIn(String token) async {
     var url = Uri.parse('$uri/customer/current');
     var headers = {'token': token};
+    var sellerurl = Uri.parse('$uri/seller/current');
 
     try {
       var response = await http.get(url, headers: headers);
+      var selleresponse = await http.get(sellerurl, headers: headers);
 
       if (response.statusCode == 202) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         //prefs.setString('looged', 'true');
         // Token is logged in
         return true;
+      } else if (selleresponse.statusCode == 200) {
+        return true;
       } else {
-        // Token is not logged in
         return false;
       }
     } catch (e) {
@@ -256,212 +263,3 @@ class AuthService {
     return false;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*class AuthService {
-  // sign up user
-  void signUpUser({
-    required BuildContext context,
-    required String email,
-    required String password,
-    required String name,
-    required String lastName,
-    required String mobileNo,
-  }) async {
-    try {
-      debugPrint(' 0');
-      User user = User(
-        name: name,
-        lastName: lastName,
-        password: password,
-        mobileNo: mobileNo,
-        emailId: email,
-        address: '',
-        type: '',
-        token: '',
-      );
-      String a = user.toJson() as String;
-      debugPrint('$a');
-      http.Response res = await http.post(
-        Uri.parse('$uri/register/customer'),
-        body: user.toJson(),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-      );
-
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-          showSnackBar(
-            context,
-            'Account created! Login with the same credentials!',
-          );
-        },
-      );
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
-  }
-
-  // sign in user
-  void signInUser({
-    required BuildContext context,
-    required String mobileNo,
-    required String password,
-  }) async {
-    try {
-      http.Response res = await http.post(
-        Uri.parse('$uri/login/customer'),
-        body: jsonEncode({
-          'mobileId': mobileNo,
-          'password': password,
-        }),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-      );
-      // SharedPreferences prefs = await SharedPreferences.getInstance();
-      //Provider.of<UserProvider>(context, listen: false).setUser(res.body);
-      //await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
-
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          Provider.of<UserProvider>(context, listen: false).setUser(res.body);
-          await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
-
-          final String? action = prefs.getString('x-auth-token');
-          print("111111111111111111$action");
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            BottomBar.routeName,
-            (route) => false,
-          );
-        },
-      );
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
-  }
-
-  void getUserData(
-    BuildContext context,
-  ) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('x-auth-token');
-
-      if (token == null) {
-        prefs.setString('x-auth-token', '');
-      }
-
-      var tokenRes = await http.get(
-        Uri.parse('$uri/customer/current'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'token': token!
-        },
-      );
-
-      var response = jsonDecode(tokenRes.body);
-
-      if (response.statuscode == 202) {
-        http.Response userRes = await http.get(
-          Uri.parse('$uri/customer/current'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'token': token
-          },
-        );
-
-        var userProvider = Provider.of<UserProvider>(context, listen: false);
-        userProvider.setUser(userRes.body);
-      }
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
-  }
-
-  Future<bool> checkTokenLoggedIn(String token) async {
-    print("object");
-    var url = Uri.parse('$uri/customer/current');
-    var headers = {'token': token};
-
-    try {
-      print("object0");
-      var response = await http.get(
-        Uri.parse('$uri/customer/current'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'token': token
-        },
-      );
-
-      if (response.statusCode == 202) {
-        // Token is logged in
-        print("object1");
-        return true;
-      } else {
-        // Token is not logged in
-        return false;
-      }
-    } catch (e) {
-      // Error occurred during API call
-      print('Error: $e');
-      return false;
-    }
-  }
-
-  Future<String?> getToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? xAuthToken = prefs.getString('x-auth-token');
-    return xAuthToken;
-  }
-}
-*/

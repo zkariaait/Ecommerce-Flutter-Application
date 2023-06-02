@@ -10,6 +10,7 @@ import 'package:pfe_app/home/screens/category_deals_screen.dart';
 import 'package:pfe_app/home/screens/home_screen.dart';
 import 'package:pfe_app/models/product.dart';
 
+import '../common/widgets/admin_bottom_bar.dart';
 import '../main.dart';
 
 class Routes {
@@ -80,6 +81,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const BottomBar(),
+      );
+
+    case AdminScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AdminScreen(),
       );
 
     case HomeScreen.routeName:
