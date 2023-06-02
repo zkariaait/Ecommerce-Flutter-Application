@@ -49,33 +49,57 @@ class MyApp extends StatelessWidget {
         useMaterial3: true, // can remove this line
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: FutureBuilder<String?>(
-        future: getType(),
+      home: FutureBuilder<bool>(
+        future: checkLoggedIn(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // Display a loading indicator while fetching the user type
+            // Display a loading indicator while checking authentication status
             return Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           } else {
-            if (snapshot.hasData) {
-              String? userType = snapshot.data;
-              if (userType == 'seller') {
-                return AdminScreen();
-              } else if (userType == 'customer') {
-                return BottomBar();
-              }
+            if (snapshot.hasData && snapshot.data!) {
+              return FutureBuilder<String?>(
+                future: getType(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // Display a loading indicator while fetching the user type
+                    return Scaffold(
+                      body: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (snapshot.hasData) {
+                      String? userType = snapshot.data;
+                      if (userType == 'seller') {
+                        return AdminScreen();
+                      } else if (userType == 'customer') {
+                        return BottomBar();
+                      }
+                    }
+                    // User is not logged in or userType is not 'seller' or 'customer',
+                    // navigate to the login screen
+                    return Login();
+                  }
+                },
+              );
+            } else {
+              // User is not logged in, navigate to the login screen
+              return Login();
             }
-
-            // User is not logged in or userType is not 'seller' or 'customer',
-            // navigate to the login screen
-            return Login();
           }
         },
       ),
     );
+  }
+
+  Future<bool> checkLoggedIn() async {
+    final AuthService authService = AuthService();
+    bool isLoggedIn = await authService.isLogged();
+    return isLoggedIn;
   }
 
   Future<String?> getType() async {

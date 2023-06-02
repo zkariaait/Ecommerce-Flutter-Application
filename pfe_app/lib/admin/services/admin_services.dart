@@ -10,6 +10,7 @@ import 'package:pfe_app/constants/global_variables.dart';
 import 'package:pfe_app/constants/utils.dart';
 import 'package:pfe_app/models/order.dart';
 import 'package:pfe_app/models/product.dart';
+import 'package:pfe_app/models/rating.dart';
 import 'package:pfe_app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,7 @@ class AdminServices {
     required int quantity,
     required String category,
     required List<File> images,
+    required List<Rating>? rating,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
@@ -45,13 +47,14 @@ class AdminServices {
         category: category,
         price: price,
         manufacturer: ' ',
+        rating: [],
       );
 
       http.Response res = await http.post(
         Uri.parse('$uri/products'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': 'seller_bd899086',
+          'token': 'seller_94efce7f',
         },
         body: product.toJson(),
       );

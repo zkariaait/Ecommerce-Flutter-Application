@@ -85,6 +85,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                       final product = productList![index];
                       return GestureDetector(
                         onTap: () {
+                          print(product.toJson());
                           Navigator.pushNamed(
                             context,
                             ProductDetailScreen.routeName,

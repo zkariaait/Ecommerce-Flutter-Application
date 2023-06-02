@@ -64,6 +64,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       quantity: int.parse(quantityController.text),
       category: category,
       images: images,
+      rating: [],
     );
     print('a: $a');
     File QR = (await saveQrCodeImage(a))!;
